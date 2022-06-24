@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "finances"
+version = "0.1.0"
+description = "Finances API"
+authors = ["Jonatas Luiz de Oliveira <contact@jonatasoliveira.dev>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dynaconf = "^3.1.7"
+fastapi = "^0.78.0"
+httpx = "^0.22.0"
+loguru = "^0.6.0"
+uvicorn = "^0.17.6"
+gunicorn = "^20.1.0"
+requests = "^2.28.0"
+
+[tool.poetry.dev-dependencies]
+ipdb = "^0.13.9"
+prospector = "^1.7.7"
+blue = "^0.8.0"
+isort = "^5.10.1"
+safety = "^1.10.3"
+pytest = "^7.0.1"
+pytest-sugar = "^0.9.4"
+pytest-coverage = "^0.0"
+pytest-watch = "^4.2.0"
+pytest-mock = "^3.7.0"
+pytest-asyncio = "^0.18.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
