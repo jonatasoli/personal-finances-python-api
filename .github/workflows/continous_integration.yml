@@ -34,3 +34,6 @@ jobs:
 
         - name: Run tests
           run: poetry run make test
+
+        - name: Run coverage
+          run: poetry run make coverage

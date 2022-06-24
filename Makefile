@@ -1,4 +1,4 @@
-.PHONY: install shell format lint test sec export configs run
+.PHONY: install shell format lint test sec export configs run coverage
 
 install:
 	@poetry install
@@ -26,6 +26,9 @@ export:
 
 configs:
 	dynaconf -i src.config.settings list
+
+coverage:
+	coverage run --source=src -m pytest
 
 run:
 	@poetry run uvicorn src.main:create_app --factory --host 0.0.0.0 --port 8000 --reload
