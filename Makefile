@@ -31,7 +31,7 @@ coverage:
 	coverage run --source=src -m pytest --cache-clear
 
 report:
-	pytest --cache-clear --cov=src test/ > pytest-coverage.txt
+	pytest --cache-clear --cov=src tests/ > pytest-coverage.txt
 
 run:
 	@poetry run uvicorn src.main:create_app --factory --host 0.0.0.0 --port 8000 --reload
