@@ -28,7 +28,10 @@ configs:
 	dynaconf -i src.config.settings list
 
 coverage:
-	coverage run --source=src -m pytest
+	coverage run --source=src -m pytest --cache-clear
+
+coverage-report:
+	pytest --cache-clear --cov=src test/ > pytest-coverage.txt
 
 run:
 	@poetry run uvicorn src.main:create_app --factory --host 0.0.0.0 --port 8000 --reload
