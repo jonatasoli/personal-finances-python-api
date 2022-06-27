@@ -37,7 +37,7 @@ jobs:
 
         - name: Build coverage file
           run: |
-            poetry run make coverage-report
+            poetry run make report
 
         - name: Comment coverage
           uses: coroo/pytest-coverage-commentator@v1.0.2

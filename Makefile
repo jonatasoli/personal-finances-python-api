@@ -1,4 +1,4 @@
-.PHONY: install shell format lint test sec export configs run coverage
+.PHONY: install shell format lint test sec export configs run coverage report
 
 install:
 	@poetry install
@@ -30,7 +30,7 @@ configs:
 coverage:
 	coverage run --source=src -m pytest --cache-clear
 
-coverage-report:
+report:
 	pytest --cache-clear --cov=src test/ > pytest-coverage.txt
 
 run:
