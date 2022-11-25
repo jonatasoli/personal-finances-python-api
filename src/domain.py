@@ -1,15 +1,16 @@
-from pydantic.dataclasses import dataclass
-from typing import Optional
-from  decimal import Decimal
 from datetime import datetime
-from pydantic import BaseModel
+from decimal import Decimal
 from enum import Enum
+from typing import Optional
+
+from pydantic import BaseModel, EmailStr
+
 
 class Record(BaseModel):
     id: int
-    user: int
-    account: int
-    category: int
+    user_id: int
+    account_id: int
+    category_id: int
     type: str
     amount: Decimal
     date: datetime
@@ -20,6 +21,7 @@ class Record(BaseModel):
 class Debts(BaseModel):
     id: int
     institution_name: str
+    user_id: int
     type: str
     financial_fine: int
     total_fine: int
@@ -33,18 +35,16 @@ class Debts(BaseModel):
 class User(BaseModel):
     id: int
     name: str
-    email: str
+    email: EmailStr
     password: str
 
-@dataclass
-class Account:
+class Account(BaseModel):
     id: int
+    description: Optional[str]
     user: User
-    description: str
 
-@dataclass
-class Category:
+class Category(BaseModel):
     id: int
-    user: int
-    description: str
+    description: Optional[str]
     Operation: Enum
+    user: int

@@ -1,8 +1,13 @@
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
 
-app = FastAPI()
+main = APIRouter()
+
+def create_app():
+    app = FastAPI()
+    app.mount("/", main)
+    return app
 
 
-@app.get('/', status_code=200)
+@main.get('/', status_code=200)
 def read_root():
     return dict(message='Hello Template')
