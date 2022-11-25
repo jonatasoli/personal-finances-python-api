@@ -14,6 +14,7 @@ lint:
 	@blue . --check
 	@isort . --check
 	@prospector --no-autodetect
+	@pylama linters eradicate mccabe mypy lycodestyle pydocstyle pyflakes pylint radon vulture isort
 
 test:
 	@pytest -s -m 'not api'
