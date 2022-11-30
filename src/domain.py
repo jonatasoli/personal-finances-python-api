@@ -18,6 +18,7 @@ class Record(BaseModel):
     tags: Optional[list[str]]
     note: Optional[str]
 
+
 class Debts(BaseModel):
     id: int
     institution_name: str
@@ -32,19 +33,22 @@ class Debts(BaseModel):
     max_value_negociation: int
     settled: bool
 
+
 class User(BaseModel):
     id: int
     name: str
     email: EmailStr
     password: str
 
+
 class Account(BaseModel):
     id: int
     description: Optional[str]
     user: User
 
+
 class Category(BaseModel):
     id: int
     description: Optional[str]
-    Operation: Enum
+    operation: str
     user: int
