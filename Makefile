@@ -1,4 +1,4 @@
-.PHONY: install shell format lint test sec export configs run coverage report
+.PHONY: install shell format lint test sec export configs run coverage report complex
 
 install:
 	@poetry install
@@ -13,8 +13,12 @@ format:
 lint:
 	@blue . --check
 	@isort . --check
-	@prospector --no-autodetect
-	@pylama linters eradicate mccabe mypy lycodestyle pydocstyle pyflakes pylint radon vulture isort
+	@prospector --profile prospector.yaml
+	@eradicate -rie .
+	@pylint src/ tests/
+
+complex:
+	@radon cc src/ -a -nc
 
 test:
 	@pytest -s -m 'not api'

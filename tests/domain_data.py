@@ -15,8 +15,8 @@ record_dict = dict(
 
 
 user_data = [
-    dict(id=None, name="John Doe", email="email@email.com", password="123"),
-    dict(id=1, name=None, email="email@email.com", password="123"),
-    dict(id=1, name="John Doe", email=None, password="123"),
-    dict(id=1, name="John Doe", email="email@email.com", password=None),
+    dict(id=None, name='John Doe', email='email@email.com', password='123'),
+    dict(id=1, name=None, email='email@email.com', password='123'),
+    dict(id=1, name='John Doe', email=None, password='123'),
+    dict(id=1, name='John Doe', email='email@email.com', password=None),
 ]

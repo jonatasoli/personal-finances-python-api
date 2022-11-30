@@ -1,0 +1,28 @@
+strictness: medium
+test-warnings: true
+doc-warnings: true
+member-warnings: true
+inherits:
+  - default
+autodetect: false
+
+ignore-paths:
+  - docs
+
+pylint:
+  run: false
+
+pyroma:
+  run: true
+
+vulture:
+  run: true
+
+frosted:
+  run: true
+
+mypy:
+  run: true
+
+bandit:
+  run: true

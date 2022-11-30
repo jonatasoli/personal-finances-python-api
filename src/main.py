@@ -2,9 +2,10 @@ from fastapi import APIRouter, FastAPI
 
 main = APIRouter()
 
+
 def create_app():
     app = FastAPI()
-    app.mount("/", main)
+    app.mount('/', main)
     return app
 
 
