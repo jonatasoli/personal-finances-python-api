@@ -1,4 +1,11 @@
-record_dict = dict(
+user_data = [
+    dict(id=None, name='John Doe', email='email@email.com', password='123'),
+    dict(id=1, name=None, email='email@email.com', password='123'),
+    dict(id=1, name='John Doe', email=None, password='123'),
+    dict(id=1, name='John Doe', email='email@email.com', password=None),
+]
+
+debts_dict = dict(
     id=1,
     user_id=1,
     institution_name='institution test',
@@ -12,11 +19,3 @@ record_dict = dict(
     max_value_negociation=1,
     settled=True,
 )
-
-
-user_data = [
-    dict(id=None, name='John Doe', email='email@email.com', password='123'),
-    dict(id=1, name=None, email='email@email.com', password='123'),
-    dict(id=1, name='John Doe', email=None, password='123'),
-    dict(id=1, name='John Doe', email='email@email.com', password=None),
-]

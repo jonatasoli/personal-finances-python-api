@@ -1,10 +1,12 @@
+import copy
+from datetime import datetime
+
 import pytest
 from pydantic import ValidationError
-from datetime import datetime
 
 from src.domain import Account, Category, Debts, Record, User
 
-from .domain_data import record_dict, user_data
+from .domain_data import debts_dict, user_data
 
 
 @pytest.mark.parametrize('user_data', user_data)
@@ -30,42 +32,41 @@ def test_send_valid_data_should_create_user_domain() -> None:
         id=1, name='test', email='email@email.com', password='123'
     )
 
+
+def test_debts_domain():
+    # Act
+    debts = Debts(**debts_dict)
+
+    # Assert
+    assert isinstance(debts, Debts)
+    assert debts.dict() == debts_dict
+
+
 @pytest.mark.parametrize(
     'debts_data',
     [
-        "id",
-        "user_id",
-        "institution_name",
-        "type",
-        "financial_fine",
-        "total_fine",
-        "priority",
-        "installments_payble",
-        "installments_value",
-        "total_late",
-        "max_value_negociation",
-        "settled"
-    ]
+        'id',
+        'user_id',
+        'institution_name',
+        'type',
+        'financial_fine',
+        'total_fine',
+        'priority',
+        'installments_payble',
+        'installments_value',
+        'total_late',
+        'max_value_negociation',
+        'settled',
+    ],
 )
-def test_some_without_valid_fields_in_debts_should_raise_x_exception(debts_data) -> None:
-    #Arrange
-    record_fields = dict(
-        id=1,
-        user_id=1,
-        institution_name='institution test',
-        type='type',
-        financial_fine=1,
-        total_fine=1,
-        priority='high',
-        installments_payble=1,
-        installments_value=1,
-        total_late=1,
-        max_value_negociation=1,
-        settled=True,
-    )
+def test_some_without_valid_fields_in_debts_should_raise_x_exception(
+    debts_data,
+) -> None:
+    # Arrange
+    record_fields = copy.deepcopy(debts_dict)
     record_fields.pop(debts_data)
 
-    #Act
+    # Act
     with pytest.raises(ValidationError) as vex:
         Debts(**record_fields)
 
@@ -74,33 +75,12 @@ def test_some_without_valid_fields_in_debts_should_raise_x_exception(debts_data)
     assert error['msg'] == 'field required'
     assert error['type'] == 'value_error.missing'
 
-def test_debts_domain():
-    #Act
-    record = Debts(
-        id=1,
-        user_id=1,
-        institution_name='institution test',
-        type='type',
-        financial_fine=1,
-        total_fine=1,
-        priority='high',
-        installments_payble=1,
-        installments_value=1,
-        total_late=1,
-        max_value_negociation=1,
-        settled=True,
-    )
-
-    # Assert
-    assert isinstance(record, Debts)
-    assert record.dict() == record_dict
-
 
 def test_valid_fields_should_create_category_domain():
-    #Act
+    # Act
     category = Category(
         id=1,
-        operation="debit",
+        operation='debit',
         user=1,
     )
 
@@ -109,7 +89,7 @@ def test_valid_fields_should_create_category_domain():
 
 
 def test_valid_fields_should_create_account_domain():
-    #Act
+    # Act
     _user = User(id=1, name='test', email='email@email.com', password='123')
     account = Account(
         id=1,
@@ -121,7 +101,7 @@ def test_valid_fields_should_create_account_domain():
 
 
 def test_valid_fields_should_create_record_domain():
-    #Act
+    # Act
     record = Record(
         id=1,
         user_id=1,
