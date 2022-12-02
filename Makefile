@@ -15,6 +15,7 @@ lint:
 	@isort . --check
 	@ruff src/ tests/
 	@radon cc src/ tests/ -a -nc
+	@vulture src/
 	@mypy src/ tests/
 	@pylint src/ tests/
 

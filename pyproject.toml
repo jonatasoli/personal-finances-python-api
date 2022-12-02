@@ -34,9 +34,10 @@ coverage = "*"
 pytest-cov = "*"
 ruff = "*"
 pylint = "^2.15.7"
+vulture = "^2.6"
 
 [tool.ruff]
-select = ["E", "F", "B"]
+select = ["E", "F", "W", "I", "D", "U", "N", "ERA", "S", "C", "FBT", "B", "A", "T", "I25", "T", "ANN", "YTT", "BLE", "C90", "RUF", "M"]
 src = ["src", "tests"]
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -63,9 +64,6 @@ exclude = [
 
 [tool.ruff.flake8-annotations]
 mypy-init-return = true
-
-[tool.ruff.flake8-quotes]
-docstring-quotes = "single"
 
 [tool.ruff.isort]
 known-first-party = ["src"]
