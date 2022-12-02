@@ -17,7 +17,9 @@ requests = "*"
 pydantic = "*"
 email-validator = "*"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
+radon = "*"
+eradicate = "*"
 ipdb = "*"
 blue = "0.9.1"
 isort = "*"
@@ -25,21 +27,74 @@ safety = "*"
 pytest = "*"
 pytest-sugar = "*"
 pytest-coverage = "*"
-pytest-watch = "*"
+pytest-watcher = "*"
 pytest-mock = "*"
 pytest-asyncio = "*"
 coverage = "*"
 pytest-cov = "*"
-flake8 = "*"
-prospector = {extras = ["with-everything"], version = "^1.7.7"}
+ruff = "*"
+pylint = "^2.15.7"
 
-[tool.poetry.group.dev.dependencies]
-radon = "^5.1.0"
-eradicate = "^2.1.0"
+[tool.ruff]
+select = ["E", "F", "B"]
+src = ["src", "tests"]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+[tool.ruff.flake8-annotations]
+mypy-init-return = true
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = "single"
+
+[tool.ruff.isort]
+known-first-party = ["src"]
+known-third-party = ["fastapi"]
+
+[tool.pylint.main]
+ignore = [ "pyproject.toml", "conftest.py" ]
 
 [tool.pylint.master]
 extension-pkg-allow-list = ["pydantic", "rapidjson"]
 
+[tool.pylint.refactoring]
+# Maximum number of nested blocks for function / method body
+max-nested-blocks = 5
+
+[tool.pytest.ini_options]
+addopts = ["--strict-markers"]
+junit_family= "xunit1"
+markers = [
+  "smoke: main tests to validate system",
+  "integrate: integrate tests",
+]
+
+[tool.coverage.run]
+omit = [
+    "backend/tests/*"
+]
+[tool.coverage.report]
+skip_empty = true
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

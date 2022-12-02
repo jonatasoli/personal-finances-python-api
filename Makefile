@@ -1,4 +1,4 @@
-.PHONY: install shell format lint test sec export configs run coverage report complex
+.PHONY: install shell format lint test sec export configs run coverage report
 
 install:
 	@poetry install
@@ -13,12 +13,10 @@ format:
 lint:
 	@blue . --check
 	@isort . --check
-	@prospector --profile prospector.yaml
-	@eradicate -rie .
+	@ruff src/ tests/
+	@radon cc src/ tests/ -a -nc
+	@mypy src/ tests/
 	@pylint src/ tests/
-
-complex:
-	@radon cc src/ -a -nc
 
 test:
 	@pytest -s -m 'not api'
