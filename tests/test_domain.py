@@ -1,3 +1,5 @@
+"""Record Domain."""
+
 import copy
 from datetime import datetime
 
@@ -10,7 +12,11 @@ from .domain_data import debts_dict, user_data
 
 
 @pytest.mark.parametrize('user_data', user_data)
-def test_not_send_all_data_should_raise_validation_error(user_data) -> None:
+def test_not_send_all_data_should_raise_validation_error(
+    user_data: dict,
+) -> None:
+    """Must raise validation Error."""
+    # Act
     with pytest.raises(ValidationError) as vex:
         User(
             id=user_data['id'],
@@ -18,23 +24,29 @@ def test_not_send_all_data_should_raise_validation_error(user_data) -> None:
             email=user_data['email'],
             password=user_data['password'],
         )
+
+    # Assert
     error = vex.value.errors().pop()
     assert error['msg'] == 'none is not an allowed value'
     assert error['type'] == 'type_error.none.not_allowed'
 
 
 def test_send_valid_data_should_create_user_domain() -> None:
+    """Must create user domain."""
     # Act
     user = User(id=1, name='test', email='email@email.com', password='123')
     # Assert
     assert isinstance(user, User)
-    assert user.dict() == dict(
-        id=1, name='test', email='email@email.com', password='123'
-    )
+    assert user.dict() == {
+        'id': 1,
+        'name': 'test',
+        'email': 'email@email.com',
+        'password': '123',
+    }
 
 
-def test_debts_domain():
-    # Act
+def test_debts_domain() -> None:
+    """Must create debts domain."""   # Act
     debts = Debts(**debts_dict)
 
     # Assert
@@ -59,9 +71,10 @@ def test_debts_domain():
         'settled',
     ],
 )
-def test_some_without_valid_fields_in_debts_should_raise_x_exception(
-    debts_data,
+def test_some_without_valid_fields_in_debts_should_raise_validation_error_exception(
+    debts_data: dict,
 ) -> None:
+    """Must invalid fields show ValidationError."""
     # Arrange
     record_fields = copy.deepcopy(debts_dict)
     record_fields.pop(debts_data)
@@ -76,7 +89,8 @@ def test_some_without_valid_fields_in_debts_should_raise_x_exception(
     assert error['type'] == 'value_error.missing'
 
 
-def test_valid_fields_should_create_category_domain():
+def test_valid_fields_should_create_category_domain() -> None:
+    """Must create category domain."""
     # Act
     category = Category(
         id=1,
@@ -88,7 +102,8 @@ def test_valid_fields_should_create_category_domain():
     assert isinstance(category, Category)
 
 
-def test_valid_fields_should_create_account_domain():
+def test_valid_fields_should_create_account_domain() -> None:
+    """Must create account domain."""
     # Act
     _user = User(id=1, name='test', email='email@email.com', password='123')
     account = Account(
@@ -100,7 +115,8 @@ def test_valid_fields_should_create_account_domain():
     assert isinstance(account, Account)
 
 
-def test_valid_fields_should_create_record_domain():
+def test_valid_fields_should_create_record_domain() -> None:
+    """Must be create record domain."""
     # Act
     record = Record(
         id=1,
