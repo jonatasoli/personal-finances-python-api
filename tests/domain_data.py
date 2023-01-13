@@ -18,10 +18,10 @@ user_data = [
 ]
 
 debts_dict = {
-    'id': 1,
+    'id_': 1,
     'user_id': 1,
     'institution_name': 'institution test',
-    'type': 'type',
+    'type_': 'type',
     'financial_fine': 1,
     'total_fine': 1,
     'priority': 'high',

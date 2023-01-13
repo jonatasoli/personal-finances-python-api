@@ -19,7 +19,7 @@ def test_not_send_all_data_should_raise_validation_error(
     # Act
     with pytest.raises(ValidationError) as vex:
         User(
-            id=user_data['id'],
+            id_=user_data['id'],
             name=user_data['name'],
             email=user_data['email'],
             password=user_data['password'],
@@ -34,11 +34,11 @@ def test_not_send_all_data_should_raise_validation_error(
 def test_send_valid_data_should_create_user_domain() -> None:
     """Must create user domain."""
     # Act
-    user = User(id=1, name='test', email='email@email.com', password='123')
+    user = User(id_=1, name='test', email='email@email.com', password='123')
     # Assert
     assert isinstance(user, User)
     assert user.dict() == {
-        'id': 1,
+        'id_': 1,
         'name': 'test',
         'email': 'email@email.com',
         'password': '123',
@@ -46,7 +46,8 @@ def test_send_valid_data_should_create_user_domain() -> None:
 
 
 def test_debts_domain() -> None:
-    """Must create debts domain."""   # Act
+    """Must create debts domain."""
+    # Act
     debts = Debts(**debts_dict)
 
     # Assert
@@ -57,10 +58,10 @@ def test_debts_domain() -> None:
 @pytest.mark.parametrize(
     'debts_data',
     [
-        'id',
+        'id_',
         'user_id',
         'institution_name',
-        'type',
+        'type_',
         'financial_fine',
         'total_fine',
         'priority',
@@ -93,7 +94,7 @@ def test_valid_fields_should_create_category_domain() -> None:
     """Must create category domain."""
     # Act
     category = Category(
-        id=1,
+        id_=1,
         operation='debit',
         user=1,
     )
@@ -105,9 +106,9 @@ def test_valid_fields_should_create_category_domain() -> None:
 def test_valid_fields_should_create_account_domain() -> None:
     """Must create account domain."""
     # Act
-    _user = User(id=1, name='test', email='email@email.com', password='123')
+    _user = User(id_=1, name='test', email='email@email.com', password='123')
     account = Account(
-        id=1,
+        id_=1,
         user=_user,
     )
 
@@ -119,11 +120,11 @@ def test_valid_fields_should_create_record_domain() -> None:
     """Must be create record domain."""
     # Act
     record = Record(
-        id=1,
+        id_=1,
         user_id=1,
         account_id=1,
         category_id=1,
-        type='debit',
+        type_='debit',
         amount=10.0,
         date=datetime.now(),
         description='one description',

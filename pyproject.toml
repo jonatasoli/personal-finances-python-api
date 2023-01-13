@@ -39,6 +39,7 @@ vulture = "^2.6"
 [tool.ruff]
 select = ["E", "F", "W", "I", "D", "U", "N", "ERA", "C", "FBT", "B", "A", "T", "I25", "T", "ANN", "YTT", "BLE", "C90", "RUF", "M"]
 src = ["src", "tests"]
+ignore = ["D203"]
 # Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",

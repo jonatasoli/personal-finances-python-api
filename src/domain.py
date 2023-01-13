@@ -1,28 +1,32 @@
+"""Domain schemas."""
 from datetime import datetime
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, EmailStr
 
 
 class Record(BaseModel):
-    id: int
+    """Expense recording template."""
+
+    id_: int
     user_id: int
     account_id: int
     category_id: int
-    type: str
+    type_: str
     amount: Decimal
     date: datetime
     description: str
-    tags: Optional[list[str]]
-    note: Optional[str]
+    tags: list[str] | None
+    note: str | None
 
 
 class Debts(BaseModel):
-    id: int
+    """Representation of a debt."""
+
+    id_: int
     institution_name: str
     user_id: int
-    type: str
+    type_: str
     financial_fine: int
     total_fine: int
     priority: str
@@ -34,20 +38,26 @@ class Debts(BaseModel):
 
 
 class User(BaseModel):
-    id: int
+    """User class."""
+
+    id_: int
     name: str
     email: EmailStr
     password: str
 
 
 class Account(BaseModel):
-    id: int
-    description: Optional[str]
+    """Kind of account."""
+
+    id_: int
+    description: str | None
     user: User
 
 
 class Category(BaseModel):
-    id: int
-    description: Optional[str]
+    """Category of an expense."""
+
+    id_: int
+    description: str | None
     operation: str
     user: int
