@@ -14,7 +14,7 @@ class Record(BaseModel):
     category_id: int
     type_: str
     amount: Decimal
-    date: datetime
+    date: str
     description: str
     tags: list[str] | None
     note: str | None

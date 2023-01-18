@@ -118,6 +118,10 @@ def test_valid_fields_should_create_account_domain() -> None:
 
 def test_valid_fields_should_create_record_domain() -> None:
     """Must be create record domain."""
+    # Arrange
+    now = datetime.now()
+    date_time = now.strftime('%m/%d/%Y')
+
     # Act
     record = Record(
         id_=1,
@@ -126,9 +130,8 @@ def test_valid_fields_should_create_record_domain() -> None:
         category_id=1,
         type_='debit',
         amount=10.0,
-        date=datetime.now(),
+        date=date_time,
         description='one description',
     )
-
     # Assert
     assert isinstance(record, Record)
