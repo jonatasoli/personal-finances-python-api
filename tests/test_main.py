@@ -15,16 +15,16 @@ def test_create_record(client: TestClient) -> None:
     """Must return record created."""
     now = datetime.now()
     date_time = now.strftime('%m/%d/%Y')
-    data_record = dict(
-        id=1,
-        user_id=1,
-        account_id=1,
-        category_id=1,
-        type='debit',
-        amount=10.0,
-        date=date_time,
-        description='one description',
-    )
+    data_record = {
+        'id_': 1,
+        'user_id': 1,
+        'account_id': 1,
+        'amount': 20,
+        'category_id': 1,
+        'type_': 'debit',
+        'date': date_time,
+        'description': 'one description',
+    }
     response = client.post('/record', json=data_record)
     response_dict = response.json()
     response_dict.pop('note')
@@ -36,16 +36,16 @@ def test_update_record(client: TestClient) -> None:
     """Must return record updated."""
     now = datetime.now()
     date_time = now.strftime('%m/%d/%Y')
-    data_record = dict(
-        id=1,
-        user_id=1,
-        account_id=1,
-        category_id=1,
-        type='debit',
-        amount=10.0,
-        date=date_time,
-        description='one description',
-    )
+    data_record = {
+        'id_': 1,
+        'user_id': 1,
+        'account_id': 1,
+        'category_id': 1,
+        'type_': 'debit',
+        'amount': 10.0,
+        'date': date_time,
+        'description': 'one description',
+    }
     response = client.put('/record', json=data_record)
     response_dict = response.json()
     response_dict.pop('note')

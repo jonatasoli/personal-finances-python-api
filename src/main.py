@@ -42,11 +42,11 @@ def get_record() -> list[dict]:
     record_data = []
     record_data.append(
         Record(
-            id=1,
+            id_=1,
             user_id=1,
             account_id=1,
             category_id=1,
-            type='debit',
+            type_='debit',
             amount=10.0,
             date=date_time,
             description='one description',
@@ -54,11 +54,11 @@ def get_record() -> list[dict]:
     )
     record_data.append(
         Record(
-            id=2,
+            id_=2,
             user_id=1,
             account_id=1,
             category_id=1,
-            type='debit',
+            type_='debit',
             amount=20.0,
             date=date_time,
             description='second description',
