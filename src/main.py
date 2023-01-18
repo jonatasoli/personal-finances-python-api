@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, FastAPI, status
 
 from src.domain import Record
 
@@ -12,6 +12,10 @@ main = APIRouter()
 def create_app() -> FastAPI:
     """Factory function."""
     app = FastAPI()
+    app.include_router(
+        main,
+        responses={status.HTTP_404_NOT_FOUND: {'description': 'Not found'}},
+    )
     app.mount('/', main)
     return app
 
